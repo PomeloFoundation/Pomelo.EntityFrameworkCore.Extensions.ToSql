@@ -35,6 +35,7 @@ namespace Sample
             optionsBuilder.UseMySql("Server=localhost;uid=root;pwd=123456;database=tosqltest");
         }
     }
+
     class PostgreSQLContext : DbContext
     {
         public DbSet<TestModel> Models { get; set; }
@@ -54,18 +55,21 @@ namespace Sample
             Console.WriteLine(SqlServerContext.Models
                 .Where(x => x.Title.Contains("Pomelo"))
                 .Where(x => new[] { 2, 3, 5, 7, 11 }.Contains(x.Count))
+                .Where(x => x.Title.Skip(3).Take(4).ToString() == "Hello")
                 .ToSql());
 
             var MySqlContext = new MySqlContext();
             Console.WriteLine(MySqlContext.Models
                 .Where(x => x.Title.Contains("Pomelo"))
                 .Where(x => new[] { 2, 3, 5, 7, 11 }.Contains(x.Count))
+                .Where(x => x.Title.Skip(3).Take(4).ToString() == "Hello")
                 .ToSql());
 
             var PostgreSQLContext = new PostgreSQLContext();
             Console.WriteLine(PostgreSQLContext.Models
                 .Where(x => x.Title.Contains("Pomelo"))
                 .Where(x => new[] { 2, 3, 5, 7, 11 }.Contains(x.Count))
+                .Where(x => x.Title.Skip(3).Take(4).ToString() == "Hello")
                 .ToSql());
 
             Console.Read();
