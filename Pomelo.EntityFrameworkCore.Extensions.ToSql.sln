@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.26711.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pomelo.EntityFrameworkCore.Extensions.ToSql", "Pomelo.EntityFrameworkCore.Extensions.ToSql\Pomelo.EntityFrameworkCore.Extensions.ToSql.csproj", "{B2C72088-8CA0-4FF4-849E-9D9858169EB6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sample", "Sample\Sample.csproj", "{7C9E3416-3EAD-4045-B9C9-09569FDF1B72}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{B2C72088-8CA0-4FF4-849E-9D9858169EB6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B2C72088-8CA0-4FF4-849E-9D9858169EB6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B2C72088-8CA0-4FF4-849E-9D9858169EB6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B2C72088-8CA0-4FF4-849E-9D9858169EB6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7C9E3416-3EAD-4045-B9C9-09569FDF1B72}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7C9E3416-3EAD-4045-B9C9-09569FDF1B72}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7C9E3416-3EAD-4045-B9C9-09569FDF1B72}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7C9E3416-3EAD-4045-B9C9-09569FDF1B72}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {FFC46368-B515-4489-8CD9-64C1436D56E6}
+	EndGlobalSection
+EndGlobal
