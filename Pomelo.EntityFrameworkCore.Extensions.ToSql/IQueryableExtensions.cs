@@ -1,5 +1,8 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
+using System.Text;
 using System.Reflection;
 using Microsoft.EntityFrameworkCore.Query;
 using Microsoft.EntityFrameworkCore.Query.Internal;
@@ -15,6 +18,50 @@ namespace Microsoft.EntityFrameworkCore
         {
             var visitor = self.CompileQuery();
             return string.Join("", visitor.Queries.Select(x => x.ToString().TrimEnd().TrimEnd(';') + ";" + Environment.NewLine));
+        }
+
+        public static IEnumerable<string> ToUnevaluated<TEntity>(this IQueryable<TEntity> self)
+        {
+            var visitor = self.CompileQuery();
+            return VisitExpression(visitor.Expression, null);
+        }
+
+        internal static IEnumerable<string> VisitExpression(Expression expression, dynamic caller)
+        {
+            var ret = new List<string>();
+            dynamic exp = expression;
+
+            if (expression.NodeType == ExpressionType.Lambda)
+            {
+                var resultBuilder = new StringBuilder();
+                if (caller != null)
+                {
+                    resultBuilder.Append(caller.Method.Name.Replace("_", "."));
+                    resultBuilder.Append("(");
+                }
+                resultBuilder.Append(exp.ToString());
+
+                if (caller != null)
+                {
+                    resultBuilder.Append(")");
+                }
+                ret.Add(resultBuilder.ToString());
+            }
+
+            try
+            {
+                if (exp.Arguments.Count > 0)
+                {
+                    foreach (var x in exp.Arguments)
+                    {
+                        ret.AddRange(VisitExpression(x, exp));
+                    }
+                }
+            }
+            catch
+            { }
+
+            return ret;
         }
 
         public static class ReflectionCommon
